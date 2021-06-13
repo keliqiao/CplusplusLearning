@@ -1,51 +1,46 @@
 ﻿#include "index.h"
-template<typename Tcc>
-void swaparr(Tcc &a,Tcc&b)
+
+class person
 {
-	Tcc temp = a;
-	a = b;
-	b = temp;
-}
-template<class Jcc>
-void rankarr(Jcc arr[],int length)
-{
-	for (int i=0;i<length;i++)
+public:
+	string name;
+	int age;
+	person(string tname,int tage)
 	{
-		int max = i;
-		for (int j=i+1;j<length;j++)
-		{
-			if (arr[max]<arr[j])
-			{
-				max = j;
-			}
-		}
-		if (max!=i)
-		{
-			swaparr<Jcc>(arr[max], arr[i]);
-		}
+		name = tname;
+		age = tage;
+	}
+};
+template <class T>
+void comparevalue(T temp1,T temp2)
+{
+	if (temp1==temp2)
+	{
+		cout << "相等" << endl;
+	}else
+	{
+		cout << "不相等" << endl;
 	}
 }
-template <class Ncc>
-void printarr(Ncc arr[],int num)
+//由于上面的模板不能比较自定义类型person，所以特意将person类型定义好模板
+template<> void comparevalue(person p1,person p2)
 {
-	for (int i=0;i<num;i++)
+	if (p1.age==p2.age&&p1.name==p2.name)
 	{
-		cout << arr[i];
+		cout << "同一个人" << endl;
+	}else
+	{
+		cout << "不是同一个人" << endl;
 	}
-	cout << endl;
 }
 int main()
 {
-	char arrc_c[] = "dcfegab";
-	int num0 = sizeof(arrc_c) / sizeof(char);
-	printarr<char>(arrc_c, num0);
-	rankarr<char>(arrc_c, 7);
-	printarr<char>(arrc_c, num0);
-	int arrc_i[] = {7,5,2,3,9,8};
-	int num1 = sizeof(arrc_i) / sizeof(int);
-	printarr<int>(arrc_i, num1);
-	rankarr<int>(arrc_i, num1);
-	printarr<int>(arrc_i, num1);
+	int a = 10;
+	int b = 20;
+	comparevalue(a, b);
+	person p1("可", 23);
+	person p2("可", 23);
+	comparevalue(p1, p2);
 	system("pause");
 	return 0;
 }
