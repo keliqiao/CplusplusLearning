@@ -1,5 +1,4 @@
 ﻿#include "index.h"
-
 //函数模板
 //可以将函数的类型参数化
 template<typename T>//声明一个函数模板，告诉编译器后面的T是一个通用数据类型
