@@ -1,25 +1,51 @@
 ﻿#include "index.h"
-//函数模板
-//可以将函数的类型参数化
-template<typename T>//声明一个函数模板，告诉编译器后面的T是一个通用数据类型
-void swapmain(T& a,T& b)
+template<typename Tcc>
+void swaparr(Tcc &a,Tcc&b)
 {
-	T temp = a;
+	Tcc temp = a;
 	a = b;
 	b = temp;
 }
+template<class Jcc>
+void rankarr(Jcc arr[],int length)
+{
+	for (int i=0;i<length;i++)
+	{
+		int max = i;
+		for (int j=i+1;j<length;j++)
+		{
+			if (arr[max]<arr[j])
+			{
+				max = j;
+			}
+		}
+		if (max!=i)
+		{
+			swaparr<Jcc>(arr[max], arr[i]);
+		}
+	}
+}
+template <class Ncc>
+void printarr(Ncc arr[],int num)
+{
+	for (int i=0;i<num;i++)
+	{
+		cout << arr[i];
+	}
+	cout << endl;
+}
 int main()
 {
-	int a = 12;
-	int b = 20;
-	cout << a << "和" << b << endl;
-	//使用模板
-	//1.自动类型推导
-	swapmain(a, b);
-	cout << a << "和" << b << endl;
-	//显示指定类型
-	swapmain<int>(a, b);
-	cout << a << "和" << b << endl;
-	return 0;
+	char arrc_c[] = "dcfegab";
+	int num0 = sizeof(arrc_c) / sizeof(char);
+	printarr<char>(arrc_c, num0);
+	rankarr<char>(arrc_c, 7);
+	printarr<char>(arrc_c, num0);
+	int arrc_i[] = {7,5,2,3,9,8};
+	int num1 = sizeof(arrc_i) / sizeof(int);
+	printarr<int>(arrc_i, num1);
+	rankarr<int>(arrc_i, num1);
+	printarr<int>(arrc_i, num1);
 	system("pause");
+	return 0;
 }
