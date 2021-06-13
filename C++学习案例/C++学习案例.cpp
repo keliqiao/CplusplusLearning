@@ -1,26 +1,30 @@
 ﻿#include "index.h"
-//创建类模板
-template <class T1,class T2>
+template<class t1,class t2>
 class person
 {
 public:
-	person(T1 tname,T2 tage)
-	{
-		name = tname;
-		age = tage;
-	}
-	void showperson()
-	{
-		cout << name << " " << age << endl;
-	}
-	T1 name;
-	T2 age;
+	person(t1 tname, t2 tage);
+	void show();
+	t1 name;
+	t2 age;
 };
+template<class t1,class t2>
+person<t1,t2>::person(t1 tname,t2 tage)
+{
+	name = tname;
+	age = tage;
+}
+template<class t1,class t2>
+void person<t1,t2>::show()
+{
+	cout << "名字：" << name << endl;
+	cout << "年龄：" << age << endl;
+}
+
 int main()
 {
-	//使用类模板
-	person<string, int> p1("乔大虾", 19);
-	p1.showperson();
+	person<string, int>pone("乔大虾", 20);
+	pone.show();
 	system("pause");
 	return 0;
 }
