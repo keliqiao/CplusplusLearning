@@ -1,33 +1,77 @@
 #include "index.h"
-template<class t1,class t2>
-class person;
-template<class t1,class t2>
-void showperson(person<t1,t2>ptemp)//类外的全局函数模板
+template <class T>
+class Arrayclass
 {
-	cout << "全局姓名：" << ptemp.name << endl;
-	cout << "全局年龄：" << ptemp.age << endl;
-}
-template<class t1, class t2>
-class person
-{
-	friend void showperson<>(person<t1, t2>ptemp);//声明类外实现的全局函数模板做友元
-	
 public:
-	person(t1 tname, t2 tage);
-	void show();
-private:
-	t1 name;
-	t2 age;
+Arrayclass(int tcapacity)
+	{
+		cout << "运行构造函数" << endl;
+		capacity = tcapacity;
+		size = 0;
+		point = new T[tcapacity];
+	}
+Arrayclass(const Arrayclass&tarrayclass)
+{
+	cout << "拷贝构造函数" << endl;
+	capacity = tarrayclass.capacity;
+	size = tarrayclass.size;
+	point = new T[tarrayclass.capacity];
+	for (int i=0;i<tarrayclass.capacity;i++)
+	{
+		point[i]= tarrayclass.point[i];
+	}
+}
+~Arrayclass()
+	{
+		cout << "运行析构函数" << endl;
+		if (point!=NULL)
+		{
+			delete[] point;
+			point = NULL;
+		}
+	}
+Arrayclass& operator=(Arrayclass&tarrayclass)
+{
+	cout << "运行operator=函数" << endl;
+	if (point!=NULL)
+	{
+		delete[] point;
+		point = NULL;
+		capacity = 0;
+		size = 0;
+	}
+	point = new T[tarrayclass.capacity];
+	capacity = tarrayclass.capacity;
+	size = tarrayclass.size;
+	return *this;
+}
+void endinsert(T tvalue)
+{
+	if (size<capacity)
+	{
+		point[size] = tvalue;
+		size++;
+	}else
+	{
+		cout << "警告！您申请的空间已满！" << endl;
+	}
+}
+void enddelete()
+{
+	if (size!=0)
+	{
+		size--;
+	}else
+	{
+		cout << "警告！您没有储存任何数据！" << endl;
+	}
+}
+T& operator[](int tnumber)
+{
+	return point[tnumber];
+}
+public:
+	T* point;
+	int capacity;
+	int size;
 };
-template<class t1, class t2>
-person<t1, t2>::person(t1 tname, t2 tage)
-{
-	name = tname;
-	age = tage;
-}
-template<class t1, class t2>
-void person<t1, t2>::show()
-{
-	cout << "名字：" << name << endl;
-	cout << "年龄：" << age << endl;
-}
