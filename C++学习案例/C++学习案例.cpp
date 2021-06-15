@@ -1,44 +1,21 @@
 ﻿#include "index.h"
-#include "template.hpp"
-
-class person
-{
-public:
-	person(){}
-	person(string tname,int tage)
-	{
-		name = tname;
-		age = tage;
-	}
-	string name;
-	int age;
-};
-void printvalue(Arrayclass<person>tarrayclass)
-{
-	for (int i=0;i<tarrayclass.size;i++)
-	{
-		cout << tarrayclass[i].name<<" "<<tarrayclass[i].age<< endl;
-	}
-}
-void temp()
-{
-	Arrayclass<person>pone(6);
-	person p1("张三", 12);
-	person p2("李四", 34);
-	person p3("王五", 24);
-	person p4("赵六", 22);
-	person p5("谯七", 53);
-	pone.endinsert(p1);
-	pone.endinsert(p2);
-	pone.endinsert(p3);
-	pone.endinsert(p4);
-	pone.endinsert(p5);
-
-	printvalue(pone);
-}
+#include "vector"
 int main()
 {
-	temp();
+	vector<int>numclass;
+	numclass.push_back(13);
+	numclass.push_back(23);
+	numclass.push_back(45);
+	numclass.push_back(32);
+	numclass.push_back(67);
+	numclass.push_back(52);
+	vector<int>::iterator startpoint = numclass.begin();
+	vector<int>::iterator endpoint = numclass.end();
+	while (startpoint!=endpoint)
+	{
+		cout << *startpoint << endl;
+		startpoint++;
+	}
 	system("pause");
 	return 0;
 }

@@ -143,7 +143,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="index.h" />
-    <ClInclude Include="template.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

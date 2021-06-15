@@ -23,8 +23,5 @@
     <ClInclude Include="index.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="template.hpp">
-      <Filter>头文件</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
