@@ -1,32 +1,28 @@
 ﻿#include "index.h"
-void printnum(int tvalue)
+
+class cperson
 {
-	cout << tvalue << endl;
-}
+public:
+	cperson(string tname,int tage)
+	{
+		pname=tname;
+		page=tage;
+	}
+	string pname;
+	int page;
+};
 int main()
 {
-	vector<int>numclass;
-	numclass.push_back(13);
-	numclass.push_back(23);
-	numclass.push_back(45);
-	numclass.push_back(32);
-	numclass.push_back(67);
-	numclass.push_back(52);
-	//第一种遍历方法：while法
-	vector<int>::iterator startpoint = numclass.begin();
-	vector<int>::iterator endpoint = numclass.end();
-	while (startpoint!=endpoint)
+	vector<cperson>vperson;
+	cperson p1("张飞",88);
+	cperson p2("张朝阳",23);
+	cperson p3("张子健",39);
+	vperson.push_back(p1);
+	vperson.push_back(p2);
+	vperson.push_back(p3);
+	for (vector<cperson>::iterator cppoint=vperson.begin();cppoint !=vperson.end();cppoint++ )
 	{
-		cout << *startpoint << endl;
-		startpoint++;
+		cout<<(*cppoint).pname<<(*cppoint).page<<endl;
 	}
-	//第二种遍历方法：for法
-	for(vector<int>::iterator numpoint=numclass.begin();numpoint!=numclass.end();numpoint++)
-	{
-		cout << *numpoint << endl;
-	}
-	//第三种遍历方法：利用STL提供的方法
-	for_each(numclass.begin(), numclass.end(), printnum());
-	system("pause");
 	return 0;
 }
