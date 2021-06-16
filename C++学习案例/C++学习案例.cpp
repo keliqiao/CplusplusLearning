@@ -1,28 +1,32 @@
 ﻿#include "index.h"
-
-class cperson
-{
-public:
-	cperson(string tname,int tage)
-	{
-		pname=tname;
-		page=tage;
-	}
-	string pname;
-	int page;
-};
 int main()
 {
-	vector<cperson*>vperson;
-	cperson p1("张飞",88);
-	cperson p2("张朝阳",23);
-	cperson p3("张子健",39);
-	vperson.push_back(&p1);
-	vperson.push_back(&p2);
-	vperson.push_back(&p3);
-	for (vector<cperson*>::iterator cppoint=vperson.begin();cppoint !=vperson.end();cppoint++ )
+	vector<vector<int>>maxv;
+	vector<int>minv1;
+	vector<int>minv2;
+	vector<int>minv3;
+	vector<int>minv4;
+	vector<int>minv5;
+	for (int i=0;i<10;i++)
 	{
-		cout<<(*cppoint)->pname<<(*cppoint)->page<<endl;
+		minv1.push_back(rand()%100);
+		minv2.push_back(rand()%100);
+		minv3.push_back(rand()%100);
+		minv4.push_back(rand()%100);
+		minv5.push_back(rand()%100);
+	}
+	maxv.push_back(minv1);
+	maxv.push_back(minv2);
+	maxv.push_back(minv3);
+	maxv.push_back(minv4);
+	maxv.push_back(minv5);
+	for (vector<vector<int>>::iterator maxit=maxv.begin();maxit!=maxv.end();maxit++)
+	{
+		for (vector<int>::iterator minit=maxit->begin();minit!=maxit->end();minit++)
+		{
+			cout<<*minit<<" ";
+		}
+		cout<<endl;
 	}
 	return 0;
 }
