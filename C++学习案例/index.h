@@ -7,4 +7,5 @@
 #include <deque>
 #include <time.h>
 #include <stack>
+#include <queue>
 using namespace std;
