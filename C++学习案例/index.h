@@ -8,4 +8,5 @@
 #include <time.h>
 #include <stack>
 #include <queue>
+#include <list>
 using namespace std;

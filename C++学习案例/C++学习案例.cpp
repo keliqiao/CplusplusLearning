@@ -1,40 +1,44 @@
 ﻿#include "index.h"
-
-class person
+void printlist1(const list<int>&tl)
 {
-public:
-	person(string tname,int tage)
+	for (list<int >::const_iterator i=tl.begin();i!=tl.end();i++)
 	{
-		this->age=tage;
-		this->name=tname;
+		cout<<*i<<" ";
 	}
-	string name;
-	int age;
-};
+	cout<<endl;
+}
+
 int main()
 {
-	queue<person>qone;
-	// 准备数据
-	person p1("张三",12);
-	person p2("李四",13);
-	person p3("王五",14);
-	person p4("赵六",15);
-	person p5("窦八",16);
-	// 入队
-	qone.push(p1);
-	qone.push(p2);
-	qone.push(p3);
-	qone.push(p4);
-	qone.push(p5);
-	//判断队列不为空则查看队头队尾
-	cout<<"队列中元素个数"<<qone.size()<<endl;
-	while (!qone.empty())
-	{
-		cout<<"队头元素："<<qone.front().name<<"——"<<qone.front().age<<endl;
-		cout<<"队尾元素："<<qone.back().name<<"——"<<qone.back().age<<endl;
-		// 出队
-		qone.pop();
-	}
-	cout<<"队列中元素个数"<<qone.size()<<endl;
+	// 创建list链表
+	list<int>l;
+	// 添加数据
+	l.push_back(23);
+	l.push_back(22);
+	l.push_back(24);
+	l.push_back(26);
+	//遍历容器
+	printlist1(l);
+	//区间构造
+	list<int>l1(l.begin(),l.end());
+	//拷贝构造
+	list<int>l2(l);
+	//n个elem
+	list<int>l3(10,223);
+	//赋值
+	list<int>l4;
+	l4=l;
+	list<int>l5;
+	l5.assign(l.begin(),l.end());
+	list<int>l6;
+	l6.assign(10,334);
+	//交换数据
+	cout<<"交换前"<<endl;
+	printlist1(l6);
+	printlist1(l);
+	l6.swap(l);
+	cout<<"交换后"<<endl;
+	printlist1(l6);
+	printlist1(l);
 	return 0;
 }
