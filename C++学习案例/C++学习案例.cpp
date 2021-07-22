@@ -1,24 +1,39 @@
 ﻿#include "index.h"
 
-class myclass
+class person
 {
 public:
-	bool operator()(const int &a,const int &b)const//函数后加const，代表此函数不能修改类的成员变量
-{
-	return a>b;
-}
+	person(string tname,int tage)
+	{
+		this->page=tage;
+		this->pname=tname;
+	}
+	string pname;//姓名
+	int page;//年龄
 };
 
+class setcom
+{
+public:
+	bool operator()(const person&tpone,const person&tptwo)const//给set容器做一个仿函数，用来给自定义数据类型排序
+	{
+		return tpone.page>tptwo.page;//仅仅按照年龄排序
+	}
+};
 int main()
 {
-	set<int,myclass>s;//用仿函数自定义set容器的排序规则为由大到小
-	s.insert(11);
-	s.insert(20);
-	s.insert(33);
-	s.insert(9);
-	for (set<int,myclass>::iterator i=s.begin();i!=s.end();i++)//遍历set容器
+	person p1("zhangsan",12);
+	person p2("lisi",17);
+	person p3("wangwu",13);
+	person p4("zhaoliu",22);
+	set<person,setcom>s;
+	s.insert(p1);
+	s.insert(p2);
+	s.insert(p3);
+	s.insert(p4);
+	for (set<person,setcom>::iterator i=s.begin();i!=s.end();i++)
 	{
-		cout<<*i<<endl;
+		cout<<i->pname<<" "<<i->page<<endl;
 	}
 	return 0;
 }
