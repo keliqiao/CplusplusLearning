@@ -1,10 +1,24 @@
 ﻿#include "index.h"
+
+class myclass
+{
+public:
+	bool operator()(const int &a,const int &b)const//函数后加const，代表此函数不能修改类的成员变量
+{
+	return a>b;
+}
+};
+
 int main()
 {
-	//对组
-	pair<string,int>pairvalue("乔大虾",22);//对组创建
-	cout<<pairvalue.first<<" "<<pairvalue.second<<endl;//对组的使用
-	pair<string,int>pairvalue1=make_pair("乔大虾1",23);//对组的创建
-	cout<<pairvalue1.first<<" "<<pairvalue1.second<<endl;//对组的使用
+	set<int,myclass>s;//用仿函数自定义set容器的排序规则为由大到小
+	s.insert(11);
+	s.insert(20);
+	s.insert(33);
+	s.insert(9);
+	for (set<int,myclass>::iterator i=s.begin();i!=s.end();i++)//遍历set容器
+	{
+		cout<<*i<<endl;
+	}
 	return 0;
 }
