@@ -1,39 +1,14 @@
 ﻿#include "index.h"
 
-class person
-{
-public:
-	person(string tname,int tage)
-	{
-		this->page=tage;
-		this->pname=tname;
-	}
-	string pname;//姓名
-	int page;//年龄
-};
-
-class setcom
-{
-public:
-	bool operator()(const person&tpone,const person&tptwo)const//给set容器做一个仿函数，用来给自定义数据类型排序
-	{
-		return tpone.page>tptwo.page;//仅仅按照年龄排序
-	}
-};
 int main()
 {
-	person p1("zhangsan",12);
-	person p2("lisi",17);
-	person p3("wangwu",13);
-	person p4("zhaoliu",22);
-	set<person,setcom>s;
-	s.insert(p1);
-	s.insert(p2);
-	s.insert(p3);
-	s.insert(p4);
-	for (set<person,setcom>::iterator i=s.begin();i!=s.end();i++)
+	map<int,int>m;//创建map容器，插入值的时候会自动按照key进行排序
+	m.insert(pair<int,int>(1,123));//用匿名的pair数据给map容器赋值
+	m.insert(pair<int,int>(2,343));
+	m.insert(pair<int,int>(3,432));
+	for (map<int,int>::iterator i=m.begin();i!=m.end();i++)
 	{
-		cout<<i->pname<<" "<<i->page<<endl;
+		cout<<i->first<<" "<<(*i).second<<endl;
 	}
 	return 0;
 }
