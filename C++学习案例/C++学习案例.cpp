@@ -1,17 +1,37 @@
 ﻿#include "index.h"
 
+class person
+{
+public:
+	person(string tname,int tid)
+	{
+		this->id=tid;
+		this->name=tname;
+	}
+	string name;
+	int id;
+};
+
+class mapcompare//map容器的自定义排序算法
+{
+public:
+	bool operator()(const person&tp1,const person&tp2)const
+	{
+		return tp1.id<tp2.id;
+	}
+};
 int main()
 {
-	map<int,int>m;//创建map容器，插入值的时候会自动按照key进行排序
-	m.insert(pair<int,int>(1,123));//用匿名的pair数据给map容器赋值
-	m.insert(pair<int,int>(2,343));
-	m.insert(pair<int,int>(3,432));
-	m.insert(make_pair(12,323));//用make pair制造对组
-	m.insert(map<int,int>::value_type(5,23));//用内置函数进行插值
-	m[12]=1233;//用中括号中的值代表key，等号后面的代表value，进行插入
-	for (map<int,int>::iterator i=m.begin();i!=m.end();i++)
+	person p1("zhangsan",23);
+	person p2("lisi",24);
+	person p3("wangwu",33);
+	map<person,int,mapcompare>mperson;//map容器创建
+	mperson.insert(make_pair(p1,294239));//map容器插入数据
+	mperson[p2]=235342;
+	mperson.insert(pair<person,int>(p3,23433));
+	for (map<person,int,mapcompare>::iterator i=mperson.begin();i!=mperson.end();i++)//map容器的输出数据
 	{
-		cout<<i->first<<" "<<(*i).second<<endl;
+		cout<<i->first.name<<" "<<i->first.id<<" "<<i->second<<endl;
 	}
 	return 0;
 }
