@@ -1,22 +1,25 @@
 ﻿#include "index.h"
-//返回值类型为bool的仿函数为谓词，参数只有一个叫一元谓词，参数两个叫两元谓词
-class person
+//二元谓词
+class eryuanweici
 {
 public:
-	bool operator()(int val)
+	bool operator()(int val1,int val2)//创建二元谓词
 	{
-		return val>5;
+		return val1<val2;
 	}
 };
 int main()
 {
 	vector<int>ve;
-	for (int i=0;i<10;i++)
+	ve.push_back(120);
+	ve.push_back(130);
+	ve.push_back(30);
+	ve.push_back(320);
+	ve.push_back(90);
+	sort(ve.begin(),ve.end(),eryuanweici());//使用二元谓词
+	for (vector<int>::iterator it=ve.begin();it!=ve.end();it++)
 	{
-		ve.push_back(i);
+		cout<<*it<<endl;
 	}
-	//person（）是一个匿名对象
-	vector<int>::iterator it= find_if(ve.begin(),ve.end(),person());//使用用一元谓词,find if返回的是一个迭代器相当于指针
-	cout<<*it<<endl;
 	return 0;
 }
