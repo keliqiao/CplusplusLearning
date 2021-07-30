@@ -1,25 +1,41 @@
 ﻿#include "index.h"
-//二元谓词
-class eryuanweici
+
+class person
 {
 public:
-	bool operator()(int val1,int val2)//创建二元谓词
+	person(string tname,int tage)
 	{
-		return val1<val2;
+		this->name=tname;
+		this->age=tage;
 	}
+	bool operator==(const person&t_person)//重载==运算符，用于自定义数据类型的比较，不然编译器并不会比较
+	{
+		if (t_person.name==this->name&&t_person.age==this->age)
+		{
+			return true;
+		}
+		return false;
+	}
+	string name;
+	int age;
 };
 int main()
 {
-	vector<int>ve;
-	ve.push_back(120);
-	ve.push_back(130);
-	ve.push_back(30);
-	ve.push_back(320);
-	ve.push_back(90);
-	sort(ve.begin(),ve.end(),eryuanweici());//使用二元谓词
-	for (vector<int>::iterator it=ve.begin();it!=ve.end();it++)
+	vector<person>v1;
+	v1.push_back(person("hello",23));
+	v1.push_back(person("hedfo",212));
+	v1.push_back(person("hesfllo",22));
+	v1.push_back(person("hesdllo",223));
+	v1.push_back(person("hsfllo",233));
+	v1.push_back(person("hafo",2313));
+	person p1("hello",22);
+	vector<person>::iterator i= find(v1.begin(),v1.end(),p1);//内部需要用到==进行比较，所以需要在类中重载==
+	if (i!=v1.end())
 	{
-		cout<<*it<<endl;
+		cout<<i->name<<" "<<i->age<<endl;
+	}else
+	{
+		cout<<"没有找到"<<endl;
 	}
 	return 0;
 }
